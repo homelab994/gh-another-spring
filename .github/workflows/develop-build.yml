@@ -40,3 +40,12 @@ jobs:
       artifact-name: 'gh-another-spring'
       release-version: ${{ needs.prepare.outputs.release-version }}
     secrets: inherit
+
+  deploy-helm-dev:
+    needs: [prepare, build-image]
+    uses: homelab994/gh-newops/.github/workflows/update-image-version.yml@develop
+    with:
+      artifact-name: 'gh-simple-spring'
+      release-version: ${{ needs.prepare.outputs.release-version }}
+      environment: 'dev'
+    secrets: inherit
