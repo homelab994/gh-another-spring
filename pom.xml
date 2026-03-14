@@ -17,8 +17,8 @@
 
 	<properties>
 		<java.version>17</java.version>
-        <spring-boot-version>2.7.18</spring-boot-version>
-        <spring-cloud-version>2021.0.9</spring-cloud-version>
+        <spring-boot-version>3.4.6</spring-boot-version>
+        <spring-cloud-version>2024.0.1</spring-cloud-version>
 	</properties>
 
     <dependencyManagement>
@@ -46,6 +46,13 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <parameters>true</parameters>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
