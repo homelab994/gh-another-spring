@@ -17,8 +17,16 @@ jobs:
       release-version: ${{ needs.prepare.outputs.release-version }}
     secrets: inherit
 
+  build-image:
+    needs: prepare
+    uses: homelab994/gh-newops/.github/workflows/build-push-docker.yml@develop
+    with:
+      artifact-name: 'gh-another-spring'
+      release-version: ${{ needs.prepare.outputs.release-version }}
+    secrets: inherit
+
   increment:
-    needs: [prepare, build]
+    needs: [prepare, build, build-image]
     uses: homelab994/gh-newops/.github/workflows/increment-patch-version.yml@develop
     with:
       release-version: ${{ needs.prepare.outputs.release-version }}
@@ -31,21 +39,4 @@ jobs:
       artifact-name: 'gh-another-spring'
       release-version: ${{ needs.prepare.outputs.release-version }}
       environment: 'DEV'
-    secrets: inherit
-
-  build-image:
-    needs: [ prepare, increment ]
-    uses: homelab994/gh-newops/.github/workflows/build-push-docker.yml@develop
-    with:
-      artifact-name: 'gh-another-spring'
-      release-version: ${{ needs.prepare.outputs.release-version }}
-    secrets: inherit
-
-  deploy-helm-dev:
-    needs: [prepare, build-image]
-    uses: homelab994/gh-newops/.github/workflows/update-image-version.yml@develop
-    with:
-      artifact-name: 'gh-another-spring'
-      release-version: ${{ needs.prepare.outputs.release-version }}
-      environment: 'dev'
     secrets: inherit
