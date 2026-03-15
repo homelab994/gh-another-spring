@@ -5,7 +5,7 @@
 
 	<groupId>com.github.grusu94</groupId>
 	<artifactId>gh-another-spring-parent</artifactId>
-	<version>26.3.25-SNAPSHOT</version>
+	<version>26.3.26-SNAPSHOT</version>
     <packaging>pom</packaging>
 	<name>gh-another-spring</name>
 	<description>Another project working with github-actions</description>
